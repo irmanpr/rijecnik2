@@ -1,0 +1,56 @@
+
+{% extends "base.html" %}
+
+{% block title %}Sirin{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+
+    {% if data %}
+    {% for item in data %}
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+
+        <div class="card text-light mb-4 border-0 rounded-0">
+            
+            <div class="image-box" onclick="playSound(this)">
+                <img src="/static/images/{{ item.Slika }}" alt="{{ item.Naziv }}">
+                <audio src="/static/audio/{{ item.Audio }}" preload="auto"></audio>
+            </div>
+            
+            <div class="card-body">
+                <h4 class="card-title text-warning">{{ item.Naziv }}</h4>
+                <p class="card-text">{{ item.Opis }}</p>
+            </div>
+            
+        </div>
+
+    </div>
+    {% endfor %}
+    {% else %}
+        <div class="alert alert-info text-center">Nema pronađenih riječi.</div>
+    {% endif %}
+    
+</div>
+
+<script>
+    let currentlyPlaying = null;
+  
+    function playSound(container) {
+      const audio = container.querySelector('audio');
+  
+      if (currentlyPlaying && currentlyPlaying !== audio) {
+        currentlyPlaying.pause();
+        currentlyPlaying.currentTime = 0;
+      }
+  
+      if (audio) {
+        audio.currentTime = 0;
+        audio.play();
+        currentlyPlaying = audio;
+      }
+    }
+  </script>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.image-box {
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  position: relative;
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+/* 🎨 Fun hover effect */
+.image-box:hover {
+  animation: bounce 0.8s ease-in-out;
+  box-shadow: 0 0 20px 5px rgba(255, 200, 0, 0.6); /* glowing yellow glow */
+}
+
+.image-box:hover img {
+  transform: scale(1.05) rotate(1deg);
+}
